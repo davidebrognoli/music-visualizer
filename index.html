@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Music visualizer</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <main class="content">
+      <canvas id="visualizer"></canvas>
+      <button id="fullscreenButton">⛶ Fullscreen</button>
+    </main>
+    <aside class="sidebar">
+      <div class="file-input" id="fileInputSection">
+        <label for="audioFile">Select Audio File</label>
+        <input type="file" id="audioFile" accept="audio/*" hidden>
+      </div>
+      <div class="controls" id="controls" style="display: none">
+        <div class="section">
+          <div class="cover">
+            <button id="clearTrackButton">X</button>
+            <img src="placeholder.webp" alt="Album Cover" id="albumCover">
+          </div>
+          <div class="details">
+            <p id="trackTitle"><strong>Title:</strong> Unknown</p>
+            <p id="trackArtist"><strong>Artist:</strong> Unknown</p>
+            <p id="trackAlbum"><strong>Album:</strong> Unknown</p>
+          </div>
+        </div>
+        <div class="section">
+          <div class="buttons">
+            <button id="playButton"></button>
+          </div>
+          <div class="time">
+            <span id="currentTime">0:00</span>
+            <input id="seekBar" type="range" min="0" max="100" step="0.1" value="0" style="width: 100%;" />
+            <span id="totalTime">0:00</span>
+          </div>
+          <div class="volume">
+            <img src="mute.svg" data-volume="0" />
+            <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5">
+            <img src="unmute.svg" data-volume="1" />
+          </div>
+        </div>
+
+        <div class="section">
+          <div id="equalizer" class="equalizer">
+            <h3>Equalizer</h3>
+            <div class="slider">
+              <input type="range" id="gain1" class="gain" min="-10" max="10" value="0" step="1">
+              <label for="gain1">60 Hz</label>
+            </div>
+            <div class="slider">
+              <input type="range" id="gain2" class="gain" min="-10" max="10" value="0" step="1">
+              <label for="gain2">250 Hz</label>
+            </div>
+            <div class="slider">
+              <input type="range" id="gain3" class="gain" min="-10" max="10" value="0" step="1">
+              <label for="gain3">1000 Hz</label>
+            </div>
+            <div class="slider">
+              <input type="range" id="gain4" class="gain" min="-10" max="10" value="0" step="1">
+              <label for="gain4">4000 Hz</label>
+            </div>
+            <div class="slider">
+              <input type="range" id="gain5" class="gain" min="-10" max="10" value="0" step="1">
+              <label for="gain5">10000 Hz</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="dropdown">
+            <select id="visualizationStyle">
+              <option value="bars">Bars</option>
+              <option value="circle">Circle</option>
+              <option value="wave">Wave</option>
+              <option value="triangle">Triangle</option>
+              <option value="spectrogram">Spectrogram</option>
+            </select>
+          </div>
+          <div id="drawOptions">
+            <input type="color" id="colorPicker" value="#00ff00">
+
+            <div class="sliders">
+              <label for="sensitivitySlider">Sensitivity:</label><br />
+              <input type="range" id="sensitivitySlider" min="1" max="10" value="5">
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
+    <script type="module" src="visualizer.js"></script>
+</body>
+
+</html>
